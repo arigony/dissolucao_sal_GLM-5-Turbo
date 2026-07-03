@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dissolução de Sais em Água — NaCl</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de progresso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Navegação fixa -->
+    <nav id="mainNav" role="navigation" aria-label="Navegação principal">
+        <div class="nav-inner">
+            <a href="#inicio" class="nav-logo" aria-label="Início">
+                <i class="fa-solid fa-atom"></i> NaCl Dissolução
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks" role="menubar">
+                <li role="none"><a href="#inicio" role="menuitem" class="active">Início</a></li>
+                <li role="none"><a href="#conceitos" role="menuitem">Conceitos</a></li>
+                <li role="none"><a href="#animacao" role="menuitem">Animação</a></li>
+                <li role="none"><a href="#simulacao" role="menuitem">Simulação</a></li>
+                <li role="none"><a href="#quiz" role="menuitem">Quiz</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Fundo decorativo -->
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-blob blob-1" aria-hidden="true"></div>
+    <div class="bg-blob blob-2" aria-hidden="true"></div>
+
+    <!-- HERO -->
+    <header id="inicio" class="hero">
+        <div class="hero-content">
+            <p class="hero-tag">Química Interativa</p>
+            <h1 class="hero-title">Dissolução de Sais<br>em <span class="accent">Água</span></h1>
+            <p class="hero-subtitle">Explore o processo de dissolução do cloreto de sódio (NaCl) através de animações didáticas, simulações interativas e avalie seu conhecimento com um quiz formativo.</p>
+            <div class="hero-actions">
+                <a href="#conceitos" class="btn btn-primary">Começar <i class="fa-solid fa-arrow-down"></i></a>
+                <a href="#simulacao" class="btn btn-ghost">Ir para Simulação</a>
+            </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+            <canvas id="heroCanvas"></canvas>
+        </div>
+    </header>
+
+    <!-- CONCEITOS -->
+    <section id="conceitos" class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Fundamentos</span>
+                <h2 class="section-title">Conceitos Essenciais</h2>
+                <p class="section-desc">Entenda cada etapa do processo de dissolução antes de explorar as animações e simulações.</p>
+            </div>
+            <div class="concepts-grid">
+                <article class="concept-card reveal" style="--delay:0">
+                    <div class="concept-icon"><i class="fa-solid fa-cube"></i></div>
+                    <h3>Cristal Iônico</h3>
+                    <p>O NaCl forma um retículo cristalino cúbico onde íons Na⁺ e Cl⁻ se alternam, unidos por forças eletrostáticas intensas (ligação iônica). Cada Na⁺ é cercado por 6 Cl⁻ e vice-versa.</p>
+                </article>
+                <article class="concept-card reveal" style="--delay:1">
+                    <div class="concept-icon icon-warm"><i class="fa-solid fa-droplet"></i></div>
+                    <h3>Polaridade da Água</h3>
+                    <p>A molécula de água (H₂O) é polar: o oxigênio possui densidade de carga negativa (δ⁻) e os hidrogênios, positiva (δ⁺). Essa assimetria permite interações fortes com íons.</p>
+                </article>
+                <article class="concept-card reveal" style="--delay:2">
+                    <div class="concept-icon"><i class="fa-solid fa-arrows-split-up-and-left"></i></div>
+                    <h3>Dissociação Iônica</h3>
+                    <p>As interações água-íon superam as forças do cristal. Os íons Na⁺ e Cl⁻ se separam da estrutura sólida — processo chamado dissociação iônica: NaCl(s) → Na⁺(aq) + Cl⁻(aq).</p>
+                </article>
+                <article class="concept-card reveal" style="--delay:3">
+                    <div class="concept-icon icon-warm"><i class="fa-solid fa-circle-nodes"></i></div>
+                    <h3>Camada de Hidratação</h3>
+                    <p>Cada íon liberado fica cercado por moléculas de água orientadas: o O (δ⁻) volta-se para o Na⁺ e os H (δ⁺) para o Cl⁻. Essa "esfera de solvatação" estabiliza o íon em solução.</p>
+                </article>
+                <article class="concept-card reveal" style="--delay:4">
+                    <div class="concept-icon"><i class="fa-solid fa-temperature-half"></i></div>
+                    <h3>Solubilidade do NaCl</h3>
+                    <p>Diferente de muitos sais, o NaCl tem solubilidade pouco sensível à temperatura: varia de ~35,7 g/100 g H₂O (0 °C) a ~39,2 g/100 g H₂O (100 °C). A agitação acelera o processo mas não altera o limite.</p>
+                </article>
+                <article class="concept-card reveal" style="--delay:5">
+                    <div class="concept-icon icon-warm"><i class="fa-solid fa-flask-vial"></i></div>
+                    <h3>Saturação</h3>
+                    <p>Quando a quantidade de sal excede a solubilidade naquela temperatura, a solução atinge a saturação. O excesso permanece sólido no fundo, sem se dissolver.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANIMAÇÃO DIDÁTICA -->
+    <section id="animacao" class="section section-alt">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Visualização</span>
+                <h2 class="section-title">Animação Didática</h2>
+                <p class="section-desc">Acompanhe passo a passo como a água decompõe o cristal de NaCl em íons hidratados.</p>
+            </div>
+            <div class="anim-wrapper reveal">
+                <div class="anim-canvas-wrap">
+                    <canvas id="didaticCanvas" aria-label="Animação didática da dissolução do NaCl"></canvas>
+                </div>
+                <div class="anim-info" id="animInfo">
+                    <h3 id="animStepTitle">Cristal Iônico de NaCl</h3>
+                    <p id="animStepDesc">O cloreto de sódio forma um cristal iônico tridimensional, onde íons Na⁺ (verde) e Cl⁻ (laranja) se alternam, unidos por forças eletrostáticas.</p>
+                </div>
+                <div class="anim-controls">
+                    <button class="btn btn-sm" id="animPrev" aria-label="Etapa anterior"><i class="fa-solid fa-backward-step"></i></button>
+                    <button class="btn btn-sm btn-primary" id="animPlay" aria-label="Reproduzir animação"><i class="fa-solid fa-play"></i></button>
+                    <button class="btn btn-sm" id="animNext" aria-label="Próxima etapa"><i class="fa-solid fa-forward-step"></i></button>
+                    <div class="anim-step-dots" id="animDots" aria-label="Indicador de etapas"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIMULAÇÃO INTERATIVA -->
+    <section id="simulacao" class="section">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Experimente</span>
+                <h2 class="section-title">Simulação Interativa</h2>
+                <p class="section-desc">Controle temperatura, quantidade de sal e agitação. Observe a dissolução em tempo real e o gráfico dinâmico.</p>
+            </div>
+            <div class="sim-layout reveal">
+                <div class="sim-visual">
+                    <div class="sim-beaker-wrap">
+                        <canvas id="beakerCanvas" aria-label="Simulação de béquer com dissolução de NaCl"></canvas>
+                    </div>
+                    <div class="sim-graph-wrap">
+                        <canvas id="graphCanvas" aria-label="Gráfico de dissolução em tempo real"></canvas>
+                    </div>
+                </div>
+                <div class="sim-controls">
+                    <div class="control-group">
+                        <label for="tempSlider">
+                            <span><i class="fa-solid fa-temperature-half"></i> Temperatura</span>
+                            <span class="control-value" id="tempValue">25 °C</span>
+                        </label>
+                        <input type="range" id="tempSlider" min="0" max="100" value="25" aria-label="Temperatura em graus Celsius">
+                    </div>
+                    <div class="control-group">
+                        <label for="saltSlider">
+                            <span><i class="fa-solid fa-cube"></i> Sal adicionado</span>
+                            <span class="control-value" id="saltValue">20 g</span>
+                        </label>
+                        <input type="range" id="saltSlider" min="0" max="50" value="20" step="1" aria-label="Gramas de sal adicionados">
+                    </div>
+                    <div class="control-group">
+                        <label for="stirSlider">
+                            <span><i class="fa-solid fa-arrows-spin"></i> Agitação</span>
+                            <span class="control-value" id="stirValue">50 %</span>
+                        </label>
+                        <input type="range" id="stirSlider" min="0" max="100" value="50" aria-label="Velocidade de agitação em porcentagem">
+                    </div>
+                    <div class="sim-buttons">
+                        <button class="btn btn-primary btn-block" id="simStart"><i class="fa-solid fa-play"></i> Iniciar</button>
+                        <button class="btn btn-ghost btn-block" id="simReset"><i class="fa-solid fa-rotate-left"></i> Resetar</button>
+                    </div>
+                    <div class="sim-stats" id="simStats">
+                        <div class="stat-item">
+                            <span class="stat-label">Dissolvido</span>
+                            <span class="stat-value" id="statDissolved">0.0 g</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Não dissolvido</span>
+                            <span class="stat-value" id="statUndissolved">0.0 g</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Limite solub.</span>
+                            <span class="stat-value" id="statSolubility">36.0 g</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Saturação</span>
+                            <span class="stat-value" id="statSaturation">0 %</span>
+                        </div>
+                    </div>
+                    <div class="sim-legend">
+                        <span class="legend-item"><span class="legend-dot" style="background:#2dd4a0"></span> Na⁺</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:#f97316"></span> Cl⁻</span>
+                        <span class="legend-item"><span class="legend-dot" style="background:rgba(255,255,255,0.5)"></span> Sal sólido</span>
+                        <span class="legend-item"><span class="legend-line"></span> Limite solubilidade</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz" class="section section-alt">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">Avaliação</span>
+                <h2 class="section-title">Quiz Formativo</h2>
+                <p class="section-desc">Teste seus conhecimentos sobre dissolução de sais. Receba feedback imediato a cada resposta.</p>
+            </div>
+            <div class="quiz-container reveal" id="quizContainer">
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+                <div class="quiz-counter" id="quizCounter">Questão 1 de 6</div>
+                <div class="quiz-question" id="quizQuestion"></div>
+                <div class="quiz-options" id="quizOptions" role="radiogroup" aria-label="Opções de resposta"></div>
+                <div class="quiz-feedback hidden" id="quizFeedback"></div>
+                <button class="btn btn-primary hidden" id="quizNext">Próxima Questão <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <div class="quiz-result hidden reveal" id="quizResult">
+                <div class="result-icon" id="resultIcon"></div>
+                <h3 id="resultTitle"></h3>
+                <p id="resultDesc"></p>
+                <div class="result-score">
+                    <span class="result-number" id="resultNumber">0</span>
+                    <span class="result-total">/ 6</span>
+                </div>
+                <div class="result-breakdown" id="resultBreakdown"></div>
+                <button class="btn btn-primary" id="quizRetry"><i class="fa-solid fa-rotate-left"></i> Tentar Novamente</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <p><i class="fa-solid fa-atom"></i> Dissolução de Sais em Água — Recurso Educacional Interativo</p>
+            <p class="footer-small">Desenvolvido com HTML5, CSS3 e JavaScript puro. Projeto de código aberto.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
